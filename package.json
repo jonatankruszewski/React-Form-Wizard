@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "yarn build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
@@ -33,6 +33,5 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "sass": "^1.77.2",
     "vite": "^5.2.0"
-  },
-  "packageManager": "yarn@4.2.2"
+  }
 }
