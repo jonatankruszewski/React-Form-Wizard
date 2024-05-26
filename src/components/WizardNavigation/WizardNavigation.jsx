@@ -1,12 +1,13 @@
 import React from 'react';
-import {useWizardData} from '../../wizard/WizardRoot.jsx';
+import {useWizardData, useWizardState} from '../../wizard/WizardRoot.jsx';
 import styles from './WizardNavigation.module.scss';
 import NavigationStep from '../NavigationStep/NavigationStep.jsx';
 
 const WizardNavigation = () => {
-  const {steps, currentStepIndex, extraData} = useWizardData();
+  const {steps, currentStepIndex} = useWizardData();
+  const {wizardState} = useWizardState();
 
-  if (extraData?.ignoreNavigation){
+  if (wizardState?.ignoreNavigation){
     return null;
   }
 
