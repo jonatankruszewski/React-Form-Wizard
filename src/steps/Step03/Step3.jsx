@@ -34,6 +34,4 @@ const Step3 = () => {
   );
 };
 
-Step3.propTypes = {};
-
 export default Step3;

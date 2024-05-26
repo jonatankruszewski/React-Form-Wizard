@@ -28,10 +28,7 @@ const WizardNavigation = () => {
           )}
       </ul>
     </aside>
-  )
-    ;
+  );
 };
-
-WizardNavigation.propTypes = {};
 
 export default WizardNavigation;

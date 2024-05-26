@@ -25,6 +25,4 @@ const StepAboutYou = () => {
   );
 };
 
-StepAboutYou.propTypes = {};
-
 export default StepAboutYou;
