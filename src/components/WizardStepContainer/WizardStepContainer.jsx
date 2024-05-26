@@ -7,7 +7,7 @@ const WizardStepContainer = ({children}) => {
 
   return (
     <main className={styles.main}>
-      <h4>{currentStepId}</h4>
+      <h2>{currentStepId}</h2>
       <div className={styles.content}>
        <CurrentStepComponent/>
       </div>

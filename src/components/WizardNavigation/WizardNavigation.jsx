@@ -12,7 +12,7 @@ const WizardNavigation = () => {
 
   return (
     <aside className={styles.root}>
-      <h4>Steps</h4>
+      <h2>Steps</h2>
       <ul className={styles.steps}>
         {steps.length > 0 && steps
           .map(({id, status, ignore}, index) => (

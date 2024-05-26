@@ -8,26 +8,26 @@ export const currentStepReducer = ({steps, currentStepIndex, extraData}, {type, 
       return {steps, currentStepIndex, extraData};
     }
 
-    const prevStateIndex = _.findLastIndex(steps, (step, index) => index < currentStepIndex && !step.ignore) || 0;
+    const prevIndex = _.findLastIndex(steps, (step, index) => index < currentStepIndex && !step.ignore);
 
-    return {steps, currentStepIndex:prevStateIndex, extraData};
+    return {steps, currentStepIndex: prevIndex < 0 ? currentStepIndex: prevIndex, extraData};
   case WIZARD_API_ACTIONS.MOVE_TO_NEXT_STEP:
     if (currentStepIndex >= _.size(steps) - 1) {
       return {steps, currentStepIndex, extraData};
     }
 
-    const nextStateIndex = _.findIndex(steps, (step, index) => index > currentStepIndex && !step.ignore) || steps.length -1;
+    const nextIndex = _.findIndex(steps, (step, index) => index > currentStepIndex && !step.ignore);
 
-    return {steps, currentStepIndex: nextStateIndex, extraData};
+    return {steps, currentStepIndex: nextIndex < 0 ? currentStepIndex : nextIndex, extraData};
   case WIZARD_API_ACTIONS.MOVE_TO_STEP_BY_ID:
     const {id} = payload;
     const targetIndex = _.findIndex(steps, {id});
 
-    if (_.isUndefined(targetIndex)) {
+    if (targetIndex < 0) {
       return {steps, currentStepIndex, extraData};
     }
 
-    if (steps[targetIndex].ignore){
+    if (steps[targetIndex].ignore) {
       return {steps, currentStepIndex, extraData};
     }
 
@@ -38,7 +38,7 @@ export const currentStepReducer = ({steps, currentStepIndex, extraData}, {type, 
       return {steps, currentStepIndex, extraData};
     }
 
-    if (steps[stepIndex].ignore){
+    if (steps[stepIndex].ignore) {
       return {steps, currentStepIndex, extraData};
     }
 

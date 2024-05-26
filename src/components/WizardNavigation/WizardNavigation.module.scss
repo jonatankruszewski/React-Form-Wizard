@@ -1,14 +1,14 @@
 .root {
-  padding: 8px;
-  min-width: 160px;
+  padding: 24px;
+  min-width: 180px;
   width: 20%;
   border-right: 1px solid hotpink;
 
   .steps {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin: 16px 0;
+    gap: 24px;
+    margin: 32px 0;
     padding: 0;
     list-style-type: none;
   }

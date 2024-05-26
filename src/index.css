@@ -18,15 +18,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    /*font-weight: 600;*/
     margin: 0;
 }
 
 input, textarea, select, button {
     font-family: inherit;
     outline-color: hotpink;
-    border-radius: 4px;
-    font-size: 10px;
+    border-radius: 8px;
+    font-size: 24px;
     padding: 4px;
 
     &:focus, &:active {
@@ -36,15 +35,15 @@ input, textarea, select, button {
 }
 
 input {
-    border: 1px solid rgba(0, 0, 0, 0.9);
+    border: 2px solid rgba(0, 0, 0, 0.9);
 
     &:focus, &:active {
-        border: 1px solid hotpink;
+        border: 2px solid hotpink;
     }
 }
 
 p {
-    font-size: 10px;
+    font-size: 18px;
 }
 
 html {

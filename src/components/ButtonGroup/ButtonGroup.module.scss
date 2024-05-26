@@ -1,24 +1,25 @@
 .buttonGroup {
   display: flex;
   width: 100%;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 24px;
+  margin-top: 24px;
   align-self: flex-end;
   justify-self: flex-end;
   justify-content: flex-end;
 
   .button {
-    padding: 4px;
-    border: 1px solid #ffb0d8;
-    min-width: 80px;
+    padding: 12px;
+    border: 2px solid #ffb0d8;
+    min-width: 160px;
     color: #333;
+    font-size: 24px;
     font-weight: normal;
     cursor: pointer;
     transition: all .2s;
     background-color: transparent;
 
     &:hover {
-      border: 1px solid hotpink;
+      border: 2px solid hotpink;
       font-weight: bold;
     }
   }
