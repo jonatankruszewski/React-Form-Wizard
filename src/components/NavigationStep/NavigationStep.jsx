@@ -3,7 +3,7 @@ import styles from './NavigationStep.module.scss';
 import {GrCheckmark, GrLinkNext} from 'react-icons/gr';
 import {useWizardAPI} from '../../wizard/WizardRoot.jsx';
 
-const NavigationStep = ({stepName, status, isCurrentStep}) => {
+const NavigationStep = ({stepName, status, isCurrentStep, ignore}) => {
   const {moveToStepById} = useWizardAPI();
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -13,6 +13,10 @@ const NavigationStep = ({stepName, status, isCurrentStep}) => {
     }
     moveToStepById(stepName);
   };
+
+  if (ignore) {
+    return null;
+  }
 
   return (
     <li

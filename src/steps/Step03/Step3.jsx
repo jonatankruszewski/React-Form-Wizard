@@ -1,0 +1,38 @@
+import React from 'react';
+import styles from './Step3.module.scss';
+import {useWizardAPI, useWizardData} from '../../wizard/WizardRoot.jsx';
+
+const Step3 = () => {
+  const {toggleIgnoreStep, setExtraData} = useWizardAPI();
+  const {steps, extraData} = useWizardData();
+  const step4 = steps.find((step) => step.id === 'Step 4');
+
+  return (
+    <>
+      <label className={styles.label}>
+        <input
+          type="checkbox"
+          checked={step4?.ignore}
+          onChange={(e) => {
+            toggleIgnoreStep('Step 4', e.target.checked);
+          }}
+        />
+        <span>Remove Step 4?</span>
+      </label>
+      <label className={styles.label}>
+        <input
+          type="checkbox"
+          checked={extraData?.ignoreNavigation}
+          onChange={(e) => {
+            setExtraData({ignoreNavigation: e.target.checked});
+          }}
+        />
+        <span>Remove Navigation</span>
+      </label>
+    </>
+  );
+};
+
+Step3.propTypes = {};
+
+export default Step3;

@@ -3,11 +3,11 @@ import styles from './WizardStepContainer.module.scss';
 import { useWizardData} from '../../wizard/WizardRoot.jsx';
 
 const WizardStepContainer = ({children}) => {
-  const {currentStepComponent: CurrentStepComponent} = useWizardData();
+  const {currentStepComponent: CurrentStepComponent, currentStepId} = useWizardData();
 
   return (
     <main className={styles.main}>
-      <h4>About you</h4>
+      <h4>{currentStepId}</h4>
       <div className={styles.content}>
        <CurrentStepComponent/>
       </div>

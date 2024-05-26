@@ -1,26 +1,34 @@
 import React from 'react';
 import {useWizardData} from '../../wizard/WizardRoot.jsx';
-import NavigationStep from '../NavigationStep/NavigationStep.jsx';
 import styles from './WizardNavigation.module.scss';
+import NavigationStep from '../NavigationStep/NavigationStep.jsx';
 
 const WizardNavigation = () => {
-  const {steps, currentStepIndex} = useWizardData();
+  const {steps, currentStepIndex, extraData} = useWizardData();
+
+  if (extraData?.ignoreNavigation){
+    return null;
+  }
 
   return (
     <aside className={styles.root}>
       <h4>Steps</h4>
       <ul className={styles.steps}>
-        {steps.length > 0 && steps.map(({id, status}, index) => (
-          <NavigationStep
-            stepName={id}
-            isCurrentStep={index === currentStepIndex}
-            status={status}
-            key={id}
-          />
-        ))}
+        {steps.length > 0 && steps
+          .map(({id, status, ignore}, index) => (
+              <NavigationStep
+                stepName={id}
+                isCurrentStep={index === currentStepIndex}
+                status={status}
+                key={id}
+                ignore={ignore}
+              />
+            )
+          )}
       </ul>
     </aside>
-  );
+  )
+    ;
 };
 
 WizardNavigation.propTypes = {};

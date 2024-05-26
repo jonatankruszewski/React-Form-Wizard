@@ -7,6 +7,7 @@ export const WIZARD_API_ACTIONS = {
   MOVE_TO_STEP_BY_INDEX: 'MOVE_TO_STEP_BY_INDEX',
   UPDATE_STEP_STATUS: 'UPDATE_STEP_STATUS',
   SET_EXTRA_DATA: 'SET_EXTRA_DATA',
+  TOGGLE_IGNORE_STEP: 'TOGGLE_IGNORE_STEP',
 };
 
 export const WizardAPIContext = createContext({
@@ -16,6 +17,7 @@ export const WizardAPIContext = createContext({
   moveToStepByIndex: (stepIndex) => {},
   onComplete: () => {},
   setExtraData: (extraData) => {},
+  toggleIgnoreStep: (stepId, newState) => {},
 });
 
 export const WizardAPIProvider = WizardAPIContext.Provider;
