@@ -5,9 +5,9 @@ import StepWrapper from '../StepWrapper/StepWrapper.jsx';
 
 const StepBasicInfo = () => {
   const {wizardState, setWizardState} = useWizardState();
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [firstName, setFirstName] = React.useState(wizardState?.firstName || '');
+  const [lastName, setLastName] = React.useState(wizardState?.lastName || '');
+  const [email, setEmail] = React.useState(wizardState?.email || '');
 
   const onNext = () => setWizardState({...wizardState, firstName, lastName, email});
 

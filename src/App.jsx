@@ -16,7 +16,7 @@ function App() {
           {id: 'About you', component: StepBasicInfo},
           {id: 'Basic Info', component: StepAboutYou},
           {id: 'Step 3', component: Step3},
-          {id: 'Step 4', component: Step4},
+          {id: 'Step 4', component: Step4, ignore: true},
           {id: '...you get the point', component: StepYouGetThePoint}
         ]}
         onComplete={data => alert(`You have finished!. Your data is ${JSON.stringify(data)}`)}>
