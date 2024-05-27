@@ -1,9 +1,11 @@
-import {createContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react';
 
-export const WizardStateContext = createContext({
+const WizardStateContext = createContext({
   setWizardState: () => {},
   wizardState: {}
 });
+
+export const useWizardStateContext = () => useContext(WizardStateContext);
 
 export const WizardStateProvider = ({children}) => {
   const [wizardState, setWizardState] = useState({});

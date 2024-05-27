@@ -18,7 +18,7 @@
     transition: all .2s;
     background-color: transparent;
 
-    &:hover {
+    &:hover, &:active {
       border: 2px solid hotpink;
       font-weight: bold;
     }

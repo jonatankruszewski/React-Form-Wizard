@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './ButtonGroup.module.scss';
-import {useWizardAPI, useWizardData} from '../../wizard/WizardRoot.jsx';
+import _ from 'lodash';
 
-const ButtonGroup = () => {
+import {useWizardAPI, useWizardData} from '../../wizard/WizardRoot.jsx';
+import styles from './ButtonGroup.module.scss';
+
+const ButtonGroup = ({onBack, onNext}) => {
   const {isCurrentStepLastStep, isCurrentStepFirstStep} = useWizardData();
   const {moveToPreviousStep, moveToNextStep, onComplete} = useWizardAPI();
 
@@ -10,13 +12,19 @@ const ButtonGroup = () => {
     <div className={styles.buttonGroup}>
       {!isCurrentStepFirstStep && <button
         className={styles.button}
-        onClick={moveToPreviousStep}
+        onClick={()=> {
+          _.isFunction(onBack) && onBack();
+          moveToPreviousStep();
+        }}
       >
         Back
       </button>}
       <button
         className={styles.button}
-        onClick={isCurrentStepLastStep ? onComplete : moveToNextStep}
+        onClick={()=>{
+          _.isFunction(onNext) && onNext();
+          isCurrentStepLastStep ? onComplete() : moveToNextStep()
+        }}
       >
         {isCurrentStepLastStep ? 'Finish' : 'Next'}
       </button>

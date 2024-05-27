@@ -1,4 +1,5 @@
-import {createContext, useMemo} from 'react';
+import {createContext, useContext, useMemo} from 'react';
+import {useWizardStateContext} from '../WizardState/WizardStateContext.jsx';
 
 export const WIZARD_API_ACTIONS = {
   MOVE_TO_PREVIOUS_STEP: 'MOVE_TO_PREVIOUS_STEP',
@@ -9,16 +10,19 @@ export const WIZARD_API_ACTIONS = {
   TOGGLE_IGNORE_STEP: 'TOGGLE_IGNORE_STEP'
 };
 
-export const WizardAPIContext = createContext({
+const WizardAPIContext = createContext({
   moveToPreviousStep: () => {},
   moveToNextStep: () => {},
   moveToStepById: (id) => {},
   moveToStepByIndex: (stepIndex) => {},
-  onComplete: () => {},
+  onComplete: (wizardState) => {},
   toggleIgnoreStep: (stepId, newState) => {}
 });
 
+export const useWizardAPIContext = () => useContext(WizardAPIContext);
+
 export const WizardAPIProvider = ({dispatch, children, onComplete}) => {
+  const {wizardState} = useWizardStateContext();
 
   const api = useMemo(() => ({
       moveToPreviousStep: () => dispatch({type: WIZARD_API_ACTIONS.MOVE_TO_PREVIOUS_STEP}),
@@ -31,13 +35,13 @@ export const WizardAPIProvider = ({dispatch, children, onComplete}) => {
         type: WIZARD_API_ACTIONS.MOVE_TO_STEP_BY_INDEX,
         payload: {stepIndex}
       }),
-      onComplete,
+      onComplete: () => onComplete(wizardState),
       toggleIgnoreStep: (stepId, newState) => dispatch({
         type: WIZARD_API_ACTIONS.TOGGLE_IGNORE_STEP,
         payload: {stepId, newState}
       })
     }
-  ), []);
+  ), [wizardState]);
 
   return (
     <WizardAPIContext.Provider value={api}>

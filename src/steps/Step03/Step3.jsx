@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Step3.module.scss';
 import {useWizardAPI, useWizardData, useWizardState} from '../../wizard/WizardRoot.jsx';
+import StepWrapper from '../StepWrapper/StepWrapper.jsx';
 
 const Step3 = () => {
   const {toggleIgnoreStep} = useWizardAPI();
@@ -9,7 +10,7 @@ const Step3 = () => {
   const step4 = steps.find((step) => step.id === 'Step 4');
 
   return (
-    <>
+    <StepWrapper>
       <label className={styles.label}>
         <input
           type="checkbox"
@@ -28,9 +29,9 @@ const Step3 = () => {
             setWizardState({...wizardState, ignoreNavigation: e.target.checked});
           }}
         />
-        <span>Remove Navigation</span>
+        <span>Remove Navigation?</span>
       </label>
-    </>
+    </StepWrapper>
   );
 };
 

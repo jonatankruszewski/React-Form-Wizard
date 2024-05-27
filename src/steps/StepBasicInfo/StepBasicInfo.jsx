@@ -1,13 +1,18 @@
 import React from 'react';
 import styles from './StepBasicInfo.module.scss';
+import {useWizardState} from '../../wizard/WizardRoot.jsx';
+import StepWrapper from '../StepWrapper/StepWrapper.jsx';
 
 const StepBasicInfo = () => {
+  const {wizardState, setWizardState} = useWizardState();
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
 
+  const onNext = () => setWizardState({...wizardState, firstName, lastName, email});
+
   return (
-    <div>
+    <StepWrapper onNext={onNext}>
       <label className={styles.label}>
         <span>First Name</span>
         <input
@@ -29,7 +34,7 @@ const StepBasicInfo = () => {
           onChange={(e) => setEmail(e.target.value)}
           value={email}/>
       </label>
-    </div>
+    </StepWrapper>
   );
 };
 

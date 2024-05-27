@@ -1,4 +1,4 @@
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
 
 export const WizardDataContext = createContext({
   steps: [],
@@ -9,5 +9,7 @@ export const WizardDataContext = createContext({
   currentStepComponent: null,
   currentStepId: null
 });
+
+export const useWizardDataContext = () => useContext(WizardDataContext);
 
 export const WizardDataProvider = WizardDataContext.Provider;

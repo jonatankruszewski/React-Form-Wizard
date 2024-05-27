@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './WizardStepContainer.module.scss';
 import { useWizardData} from '../../wizard/WizardRoot.jsx';
 
-const WizardStepContainer = ({children}) => {
+const WizardStepContainer = () => {
   const {currentStepComponent: CurrentStepComponent, currentStepId} = useWizardData();
 
   return (
@@ -11,7 +11,6 @@ const WizardStepContainer = ({children}) => {
       <div className={styles.content}>
        <CurrentStepComponent/>
       </div>
-      {children}
     </main>
   );
 };

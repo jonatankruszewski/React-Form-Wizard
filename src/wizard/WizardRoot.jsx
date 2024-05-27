@@ -1,10 +1,10 @@
-import React, {useContext, useMemo, useReducer, useCallback} from 'react';
+import React, {useCallback, useContext, useMemo, useReducer} from 'react';
 import _ from 'lodash';
 import {v4 as uuidv4} from 'uuid';
 import {currentStepReducer} from './WizardData/WizardDataReducer.jsx';
-import {WizardDataContext, WizardDataProvider} from './WizardData/WizardDataContext.jsx';
-import {WizardAPIContext, WizardAPIProvider} from './WizardAPI/WizardAPIContext.jsx';
-import {WizardStateContext, WizardStateProvider} from './WizardState/WizardStateContext.jsx';
+import {WizardDataProvider, useWizardDataContext} from './WizardData/WizardDataContext.jsx';
+import {WizardAPIProvider, useWizardAPIContext} from './WizardAPI/WizardAPIContext.jsx';
+import {WizardStateProvider, useWizardStateContext} from './WizardState/WizardStateContext.jsx';
 
 export const WizardRoot = ({steps: originalSteps = [], onComplete, children}) => {
   const mappedSteps = _.map(originalSteps, step => ({
@@ -47,15 +47,15 @@ export const WizardRoot = ({steps: originalSteps = [], onComplete, children}) =>
 
   return <>
     <WizardDataProvider value={data}>
-      <WizardAPIProvider dispatch={useCallback(dispatch, [])} onComplete={onComplete}>
-        <WizardStateProvider>
+      <WizardStateProvider>
+        <WizardAPIProvider dispatch={useCallback(dispatch, [])} onComplete={onComplete}>
           {children}
-        </WizardStateProvider>
-      </WizardAPIProvider>
+        </WizardAPIProvider>
+      </WizardStateProvider>
     </WizardDataProvider>
   </>;
 };
 
-export const useWizardState = () => useContext(WizardStateContext);
-export const useWizardAPI = () => useContext(WizardAPIContext);
-export const useWizardData = () => useContext(WizardDataContext);
+export const useWizardData = useWizardDataContext;
+export const useWizardState = useWizardStateContext;
+export const useWizardAPI = useWizardAPIContext;

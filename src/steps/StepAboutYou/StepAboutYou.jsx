@@ -1,12 +1,17 @@
 import React from 'react';
 import styles from './StepAboutYou.module.scss';
+import {useWizardState} from '../../wizard/WizardRoot.jsx';
+import StepWrapper from '../StepWrapper/StepWrapper.jsx';
 
 const StepAboutYou = () => {
-  const [favouriteMovie, setFavouriteMovie] = React.useState('');
-  const [favouriteSong, setFavouriteSong] = React.useState('');
+  const {wizardState, setWizardState} = useWizardState();
+  const [favouriteMovie, setFavouriteMovie] = React.useState(wizardState?.favouriteMovie || '');
+  const [favouriteSong, setFavouriteSong] = React.useState(wizardState?.favouriteSong || '');
+
+  const onNext = () => setWizardState({...wizardState, favouriteMovie, favouriteSong});
 
   return (
-    <div>
+    <StepWrapper onNext={onNext}>
       <label className={styles.label}>
         <span>Favourite movie</span>
         <input
@@ -21,7 +26,7 @@ const StepAboutYou = () => {
           onChange={(e) => setFavouriteSong(e.target.value)}
           value={favouriteSong}/>
       </label>
-    </div>
+    </StepWrapper>
   );
 };
 
